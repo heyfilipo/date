@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Go Out With Me?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            color: #fff;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .content {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            border-radius: 15px;
+            margin-top: 100px;
+        }
+        h1 {
+            color: #33BEFF;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="main" class="content">
+        <h1>Will you go out with me?</h1>
+        <img src="your-picture.png" alt="Cute Picture" style="max-width: 100%; height: auto; border-radius: 15px; margin-bottom: 20px;">
+        <br>
+        <button class="yes" onclick="yesAnswer()">Yes</button>
+        <button class="no" onclick="noAnswer()">No</button>
+    </div>
+
+    <script>
+        function noAnswer() {
+            window.location.href = 'https://youtu.be/etSbOs3aUqI?si=punORdPhznff7EnS&t=17';
+        }
+
+        function yesAnswer() {
+            document.getElementById('main').innerHTML = `
+                <h1>What date?</h1>
+                <input type="date" id="datePicker" style="padding: 10px; font-size: 16px; margin-bottom: 20px;">
+                <br>
+                <button class="yes" onclick="nextPage('activity')">Done</button>
+            `;
+        }
+
+        function nextPage(stage) {
+            if (stage === 'activity') {
+                document.getElementById('main').innerHTML = `
+                    <h1>What do you want to do?</h1>
+                    <select id="activity" style="padding: 10px; font-size: 16px;">
+                        <option>Go to a movie</option>
+                        <option>Go for a walk</option>
+                        <option>Have a coffee</option>
+                    </select>
+                    <br><br>
+                    <button class="yes" onclick="nextPage('food')">Done</button>
+                `;
+            } else if (stage === 'food') {
+                document.getElementById('main').innerHTML = `
+                    <h1>What do you want to eat afterwards?</h1>
+                    <select id="food" style="padding: 10px; font-size: 16px;">
+                        <option>Pizza</option>
+                        <option>Burgers</option>
+                        <option>Sushi</option>
+                        <option>Pasta</option>
+                        <option>Ice cream</option>
+                    </select>
+                    <br><br>
+                    <button class="yes" onclick="thankYouPage()">Done</button>
+                `;
+            }
+        }
+
+        function thankYouPage() {
+            document.getElementById('main').innerHTML = `
+                <h1>Thank you for filling this out and see you soon <3</h1>
+                <img src="thankyou.png" alt="Thank You Picture" style="max-width: 100%; height: auto; border-radius: 15px;">
+            `;
+        }
+    </script>
+</body>
+</html>
